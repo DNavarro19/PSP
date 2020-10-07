@@ -14,8 +14,8 @@ public class Ej3 {
         ProcessBuilder pb = new ProcessBuilder(command);
         pb.redirectErrorStream(true);
         try {
-            Process cmd = pb.start();
-            InputStream is = cmd.getInputStream();
+            Process process = pb.start();
+            InputStream is = process.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(is, "850"));
 
             System.out.println("La salida del proceso hijo " + Arrays.toString(command) + ":");

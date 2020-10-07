@@ -16,7 +16,7 @@ public class Ej3 {
         try {
             Process cmd = pb.start();
             InputStream is = cmd.getInputStream();
-            BufferedReader br = new BufferedReader(new InputStreamReader(is, "Windows-Western"));
+            BufferedReader br = new BufferedReader(new InputStreamReader(is, "850"));
 
             System.out.println("La salida del proceso hijo " + Arrays.toString(command) + ":");
             while ((line = br.readLine()) != null) {

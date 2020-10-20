@@ -16,7 +16,7 @@ public class TestProcessIO {
 	}
 
 	public static void main(String[] args) throws IOException {
-		ProcessBuilder builder = new ProcessBuilder("cmd.exe /c java -jar ./src/ejemplos/ReservaHotel"); //definimos el shell de windows como proceso a ejecutar
+		ProcessBuilder builder = new ProcessBuilder("cmd.exe /c \"java -jar ./src/ejemplos/ReservaHotel\""); //definimos el shell de windows como proceso a ejecutar
 		builder.redirectErrorStream(true); //redirige el buffer de error a la salida estándar
 		Process process = builder.start();
 		InputStream out = process.getInputStream(); //configuramos la salida del proceso hijo

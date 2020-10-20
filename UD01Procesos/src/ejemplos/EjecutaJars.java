@@ -1,14 +1,12 @@
-package Ejemplos;
+package ejemplos;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.util.Scanner;
 
-public class ComBidir {
+public class EjecutaJars {
 
 	public static void main(String[] command) {
 		// TODO Auto-generated method stub

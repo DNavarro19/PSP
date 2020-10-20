@@ -1,5 +1,7 @@
 package bol1;
 
+import java.util.Random;
+
 public class Ej6 {
 
 	public static void main(String[] args) {
@@ -9,8 +11,7 @@ public class Ej6 {
 	}
 
 	private static int numRandom(){
-		int num;
-		num = (int) (Math.random()*11);
-		return num;
+		Random r = new Random();
+		return r.nextInt(10);  
 	}
 }

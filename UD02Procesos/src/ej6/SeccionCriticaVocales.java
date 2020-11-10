@@ -1,6 +1,8 @@
-package bol2;
+package ej6;
 
 import java.io.FileNotFoundException;
+
+import acumulador.Acumula;
 
 public class SeccionCriticaVocales {
 

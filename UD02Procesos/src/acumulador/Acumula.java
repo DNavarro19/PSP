@@ -1,4 +1,4 @@
-package bol2;
+package acumulador;
 
 public class Acumula {
 public static int acumulador = 0;

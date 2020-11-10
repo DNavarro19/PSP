@@ -1,4 +1,4 @@
-package bol2;
+package ej2;
 
 public class Orden {
 	public static void main(String[] args) {

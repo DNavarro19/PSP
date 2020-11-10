@@ -1,4 +1,4 @@
-package bol2;
+package ej1;
 
 public class Fibonacci implements Runnable {
 

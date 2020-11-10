@@ -1,4 +1,4 @@
-package bol2;
+package ej2;
 
 public class Hilo1 implements Runnable {
 	public Thread t;

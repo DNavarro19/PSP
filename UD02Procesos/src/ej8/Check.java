@@ -1,4 +1,4 @@
-package bol2;
+package ej8;
 
 import java.nio.IntBuffer;
 

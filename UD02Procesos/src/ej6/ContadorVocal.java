@@ -1,10 +1,12 @@
-package bol2;
+package ej6;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+
+import acumulador.Acumula;
 
 public class ContadorVocal extends Thread {
 

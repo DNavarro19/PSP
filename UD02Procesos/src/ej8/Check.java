@@ -5,8 +5,16 @@ import java.nio.IntBuffer;
 public class Check {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		int[] buffer = new int[10000];
+		Buffer buffer = new Buffer();
+		EscribeBuffer escribe = new EscribeBuffer(buffer);
+		LeeBuffer lee = new LeeBuffer(buffer);
+		escribe.start();
+		lee.start();
+		
+		while(lee.isCorr()) {
+			escribe.run();
+			lee.run();
+		}
 	}
 
 }

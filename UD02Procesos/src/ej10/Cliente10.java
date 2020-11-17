@@ -2,13 +2,17 @@ package ej10;
 
 import java.util.Random;
 
-public class Cliente extends Thread {
-	private Caja caja;
+public class Cliente10 implements Runnable {
+	private Caja10 caja;
 	private int numCliente;
 	private Random r = new Random();
+	private int turno;
+	Thread t;
 
-	public Cliente(int num) {
+	public Cliente10(int num) {
 		this.numCliente = num;
+		t = new Thread(this);
+		t.start();
 	}
 
 	@Override
@@ -21,13 +25,14 @@ public class Cliente extends Thread {
 			e.printStackTrace();
 		}
 		caja = SuperMarket.asignarCaja();
-		System.out.println("Soy el cliente " + numCliente + " elijo la caja " + caja.getNumCaja());
+		turno = caja.getTurno();
+		System.out.println("Soy el cliente " + numCliente + " elijo la caja " + caja.getNumCaja()+ " con turno " + turno);
+		
 		entrarACaja();
-
 	}
 
 	public synchronized void entrarACaja() {
-		while (caja.isOcupado()) {
+		while (caja.isOcupado() || turno != caja.getSiguiente()) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
@@ -45,6 +50,7 @@ public class Cliente extends Thread {
 		int pago = r.nextInt(50);
 		System.out.println("Soy el cliente " + numCliente + " pago " + pago);
 		caja.cobrar(pago);
-
 	}
+	
+	
 }

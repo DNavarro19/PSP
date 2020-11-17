@@ -1,16 +1,16 @@
-package ej10;
+package ej11;
 
-public class Caja {
+public class Caja11 {
 
 	private int numCaja;
 	private boolean ocupado;
 
-	public Caja(int num) {
+	public Caja11(int num) {
 		this.numCaja = num;
 	}
 
 	public synchronized void cobrar(int cantidad) {
-		Resultado.resultado += cantidad;
+		Resultado11.resultado += cantidad;
 		this.ocupado = false;
 		notifyAll();
 	}

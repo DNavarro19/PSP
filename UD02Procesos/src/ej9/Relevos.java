@@ -10,13 +10,10 @@ public class Relevos {
 		}
 		System.out.println("Todos los hilos creados");
 		System.out.println("Doy la salida");
-		for (int i = 0; i < 4; i++) {
-			corredores[0].start();
-			corredores[1].start();
-			corredores[2].start();
-			corredores[3].start();
-		}
-		
+		corredores[3].start();
+		corredores[2].start();
+		corredores[1].start();
+		corredores[0].start();
 		
 		for (int i = 0; i < corredores.length; i++) {
 			corredores[i].join();

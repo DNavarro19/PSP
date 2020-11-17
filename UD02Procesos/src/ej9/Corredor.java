@@ -9,18 +9,19 @@ public class Corredor extends Thread {
 		this.num = numCorredor;
 	}
 
+	@Override
 	public void run() {
 		try {
 			cogerRelevo();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		darRelevo();
 	}
 
 	public synchronized void cogerRelevo() throws InterruptedException {
-		rel.coger();
+		//para poder controlar el hilo que debe correr se incluye la posición al intentar coger el relevo
+		rel.coger(num);
 		System.out.println("Soy el thread " + num + ", corriendo");
 	}
 

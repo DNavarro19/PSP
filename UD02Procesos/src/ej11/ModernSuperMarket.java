@@ -24,17 +24,16 @@ public class ModernSuperMarket {
 		System.out.println(Resultado11.resultado);
 	}
 
-	public synchronized static Caja11 asignarCaja() throws InterruptedException {
+	public synchronized static Caja11 asignarCaja(int turno) throws InterruptedException {
 		boolean asignada = false;
-		int inx = 0;
-		do {
+		while (!asignada || Caja11.siguiente != turno)
 			for (int i = 0; i < cajas.size() && !asignada; i++) {
 				if (!cajas.get(i).isOcupado()) {
 					asignada = true;
-					inx = i;
+					Caja11.siguiente++;
+					return cajas.get(i);
 				}
 			}
-		} while (!asignada);
-		return cajas.get(inx);
+		 return null;
 	}
 }

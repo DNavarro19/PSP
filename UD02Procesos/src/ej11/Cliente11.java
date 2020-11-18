@@ -6,6 +6,7 @@ public class Cliente11 extends Thread {
 	private Caja11 caja;
 	private int numCliente;
 	private Random r = new Random();
+	private int turno;
 
 	public Cliente11(int num) {
 		this.numCliente = num;
@@ -21,7 +22,12 @@ public class Cliente11 extends Thread {
 			e.printStackTrace();
 		}
 		try {
-			caja = ModernSuperMarket.asignarCaja();
+			turno = Caja11.getTurno();
+			do {
+				caja = ModernSuperMarket.asignarCaja(turno);
+				wait();
+			} while (caja.equals(null));
+			
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

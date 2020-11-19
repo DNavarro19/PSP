@@ -25,9 +25,11 @@ public class Cliente11 extends Thread {
 			turno = Caja11.getTurno();
 			do {
 				caja = ModernSuperMarket.asignarCaja(turno);
-				wait();
+				if (caja.equals(null)) {
+					wait();
+				}
 			} while (caja.equals(null));
-			
+
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -38,14 +40,6 @@ public class Cliente11 extends Thread {
 	}
 
 	public synchronized void entrarACaja() {
-		while (caja.isOcupado()) {
-			try {
-				wait();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		caja.setOcupado(true);
 		System.out.println("Soy el cliente " + numCliente + " entro a la caja " + caja.getNumCaja());
 		try {
 			Thread.sleep(r.nextInt(100));
@@ -58,6 +52,5 @@ public class Cliente11 extends Thread {
 		caja.cobrar(pago);
 
 	}
-	
-	
+
 }

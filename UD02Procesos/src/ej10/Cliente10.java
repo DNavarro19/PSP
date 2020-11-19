@@ -24,33 +24,22 @@ public class Cliente10 implements Runnable {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		caja = SuperMarket.asignarCaja();
-		turno = caja.getTurno();
-		System.out.println("Soy el cliente " + numCliente + " elijo la caja " + caja.getNumCaja()+ " con turno " + turno);
-		
+		escogerCaja();
 		entrarACaja();
 	}
 
 	public synchronized void entrarACaja() {
-		while (caja.isOcupado() || turno != caja.getSiguiente()) {
-			try {
-				wait();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-		caja.setOcupado(true);
-		System.out.println("Soy el cliente " + numCliente + " entro a la caja " + caja.getNumCaja());
-		try {
-			Thread.sleep(r.nextInt(100));
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		int pago = r.nextInt(50);
-		System.out.println("Soy el cliente " + numCliente + " pago " + pago);
-		caja.cobrar(pago);
+		int espera = r.nextInt(100);
+		caja.entrar(this.numCliente, pago, espera, this.turno);
+
 	}
-	
-	
+
+	private synchronized void escogerCaja() {
+		caja = SuperMarket.asignarCaja();
+		turno = caja.getTurno();
+		System.out.println(
+				"Soy el cliente " + numCliente + " elijo la caja " + caja.getNumCaja() + " con turno " + turno);
+	}
+
 }

@@ -2,8 +2,6 @@ package ej11;
 
 import java.util.ArrayList;
 
-
-
 public class ModernSuperMarket {
 	static ArrayList<Caja11> cajas = new ArrayList<>();
 
@@ -30,10 +28,11 @@ public class ModernSuperMarket {
 			for (int i = 0; i < cajas.size() && !asignada; i++) {
 				if (!cajas.get(i).isOcupado()) {
 					asignada = true;
+					cajas.get(i).setOcupado(true);
 					Caja11.siguiente++;
 					return cajas.get(i);
 				}
 			}
-		 return null;
+		return null;
 	}
 }

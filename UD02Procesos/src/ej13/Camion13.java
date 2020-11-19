@@ -1,21 +1,18 @@
-package ej12;
+package ej13;
 
 import java.util.Random;
 
-import ej11.Caja11;
-import ej11.ModernSuperMarket;
-
-public class Coche implements Runnable {
+public class Camion13 implements Runnable {
 
 	Thread t;
-	private Parking park;
-	private int numCoche;
+	private Parking13 park;
+	private int numCamion;
 	private int turno;
 	private Random rnd = new Random();
 
-	public Coche(int num, Parking park) {
+	public Camion13(int num, Parking13 park) {
 		this.park = park;
-		this.numCoche = num;
+		this.numCamion = 100 + num;
 		this.t = new Thread(this);
 		t.start();
 	}
@@ -45,16 +42,16 @@ public class Coche implements Runnable {
 	}
 
 	private synchronized void entrarAlParking() throws InterruptedException {
-		park.entrar(this.numCoche, this.turno);
+		park.entrarCamion(this.numCamion, this.turno);
 	}
 
 	private synchronized void salirDelParking() {
-		park.salir(this.numCoche);
+		park.salirCamion(this.numCamion);
 	}
 
 	private synchronized void cogerTurno() {
-		this.turno = park.getTurno();
-		System.out.println("Coche número " + this.numCoche + " cogiendo el turno " + this.turno);
+		this.turno = park.getTurnoCamion();
+		System.out.println("Camion número " + this.numCamion + " cogiendo el turno " + this.turno);
 	}
 
 }

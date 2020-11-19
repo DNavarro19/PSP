@@ -15,5 +15,4 @@ public class ControlParking {
 			coches[i] = new Coche(i + 1, park);
 		}
 	}
-
 }

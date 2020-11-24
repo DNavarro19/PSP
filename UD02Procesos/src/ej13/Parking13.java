@@ -46,7 +46,6 @@ public class Parking13 {
 				System.out.println("[" + plazas[j] + "]");
 			}
 		}
-
 	}
 
 	public synchronized void entrarCamion(int numCamion, int turnoCamion, String tipoV) throws InterruptedException {

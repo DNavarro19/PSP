@@ -2,7 +2,7 @@ package ej12;
 
 public class ControlParking {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		int numPlazas = 3;
 		int numCoches = 7;
 		int[] plazas = new int[numPlazas];
@@ -13,6 +13,9 @@ public class ControlParking {
 		Coche[] coches = new Coche[numCoches];
 		for (int i = 0; i < coches.length; i++) {
 			coches[i] = new Coche(i + 1, park);
+		}
+		for (int i = 0; i < coches.length; i++) {
+			coches[i].t.join();
 		}
 	}
 }

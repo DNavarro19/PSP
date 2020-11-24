@@ -2,14 +2,17 @@ package ej11;
 
 import java.util.Random;
 
-public class Cliente11 extends Thread {
+public class Cliente11 implements Runnable {
 	private Caja11 caja;
 	private int numCliente;
 	private Random r = new Random();
 	private int turno;
+	Thread t;
 
 	public Cliente11(int num) {
 		this.numCliente = num;
+		t = new Thread(this);
+		t.start();
 	}
 
 	@Override
@@ -39,7 +42,7 @@ public class Cliente11 extends Thread {
 
 	}
 
-	public synchronized void entrarACaja() {
+	public void entrarACaja() {
 		System.out.println("Soy el cliente " + numCliente + " entro a la caja " + caja.getNumCaja());
 		try {
 			Thread.sleep(r.nextInt(100));

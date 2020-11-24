@@ -9,6 +9,7 @@ public class Camion13 implements Runnable {
 	private int numCamion;
 	private int turno;
 	private Random rnd = new Random();
+	private String tipoV = "camion";
 
 	public Camion13(int num, Parking13 park) {
 		this.park = park;
@@ -41,15 +42,15 @@ public class Camion13 implements Runnable {
 		salirDelParking();
 	}
 
-	private synchronized void entrarAlParking() throws InterruptedException {
-		park.entrarCamion(this.numCamion, this.turno);
+	private void entrarAlParking() throws InterruptedException {
+		park.entrarCamion(this.numCamion, this.turno, this.tipoV);
 	}
 
-	private synchronized void salirDelParking() {
+	private void salirDelParking() {
 		park.salirCamion(this.numCamion);
 	}
 
-	private synchronized void cogerTurno() {
+	private void cogerTurno() {
 		this.turno = park.getTurnoCamion();
 		System.out.println("Camion número " + this.numCamion + " cogiendo el turno " + this.turno);
 	}

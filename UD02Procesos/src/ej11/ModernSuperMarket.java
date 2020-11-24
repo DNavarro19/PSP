@@ -14,12 +14,11 @@ public class ModernSuperMarket {
 		for (int i = 0; i < 5; i++) {
 			clientes[i] = new Cliente11(i + 1);
 		}
-
-		for (int i = 0; i < clientes.length; i++) {
-			clientes[i].start();
-		}
-		Thread.sleep(10000);
+		Thread.sleep(1000);
 		System.out.println(Resultado11.resultado);
+		for (int i = 0; i < clientes.length; i++) {
+			clientes[i].t.join();
+		}
 	}
 
 	public synchronized static Caja11 asignarCaja(int turno) throws InterruptedException {

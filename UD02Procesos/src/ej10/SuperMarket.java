@@ -15,8 +15,12 @@ public class SuperMarket {
 			clientes[i] = new Cliente10(i + 1);
 		}
 
-		Thread.sleep(5000);
+		Thread.sleep(1000);
 		System.out.println(Resultado10.resultado);
+		
+		for (int i = 0; i < clientes.length; i++) {
+			clientes[i].t.join();
+		}
 	}
 
 	public static Caja10 asignarCaja() {

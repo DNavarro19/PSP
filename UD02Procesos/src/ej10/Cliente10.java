@@ -28,14 +28,14 @@ public class Cliente10 implements Runnable {
 		entrarACaja();
 	}
 
-	public synchronized void entrarACaja() {
+	public void entrarACaja() {
 		int pago = r.nextInt(50);
 		int espera = r.nextInt(100);
 		caja.entrar(this.numCliente, pago, espera, this.turno);
 
 	}
 
-	private synchronized void escogerCaja() {
+	private void escogerCaja() {
 		caja = SuperMarket.asignarCaja();
 		turno = caja.getTurno();
 		System.out.println(

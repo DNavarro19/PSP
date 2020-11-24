@@ -5,13 +5,11 @@ public class Parking {
 	private int turno;
 	private int siguiente;
 	public int[] plazas;
-	private boolean completo;
 
 	public Parking(int[] plazas) {
 		this.plazas = plazas;
 		this.siguiente = 1;
 		this.turno = 0;
-		this.completo = false;
 	}
 
 	public synchronized int getTurno() {
@@ -49,7 +47,6 @@ public class Parking {
 		for (int i = 0; i < plazas.length; i++) {
 			if (plazas[i] == numCoche) {
 				plazas[i] = 0;
-				this.completo = false;
 				System.out.println("Salida: Coche " + numCoche + " sale del parking");
 			}
 		}

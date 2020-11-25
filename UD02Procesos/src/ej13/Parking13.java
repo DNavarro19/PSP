@@ -92,7 +92,7 @@ public class Parking13 {
 		notifyAll();
 	}
 
-	private boolean compruebaParking(String tipoV, int turno) {
+	private synchronized boolean compruebaParking(String tipoV, int turno) {
 		if (tipoV.equalsIgnoreCase("camion")) { // comprueba si el vehiculo es un camion
 			if (turno == this.siguienteCamion) { // comprueba si es el turno de este camion y si lo es busca si hay
 													// plaza libre para él

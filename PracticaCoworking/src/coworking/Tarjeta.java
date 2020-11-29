@@ -14,9 +14,9 @@ public class Tarjeta {
 		int espera = 0;
 		synchronized (this) {
 			while (this.ocupada) {
-				this.wait(500);
+				this.wait(250);
 				espera++;
-				if (espera == 2) {
+				if (espera == 2 && this.ocupada) {
 					if (p.getTarjetaIzquierda().equals(this)) {
 						espera = 0;
 						p.getTarjetaDerecha().soltarTarjeta();
@@ -25,7 +25,6 @@ public class Tarjeta {
 						p.getTarjetaIzquierda().soltarTarjeta();
 					}
 				}
-
 			}
 			this.setOcupada(true);
 		}

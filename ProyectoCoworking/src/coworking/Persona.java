@@ -41,6 +41,19 @@ public class Persona implements Runnable {
 	 * El PC que va a usar
 	 */
 	private PC pc;
+	/*
+	 * Indica si es su turno para coger las tarjetas o no
+	 */
+	private boolean turno;
+	/*
+	 * El objeto que hara de monitor para esperar si no se tiene el turno
+	 */
+	private Object mutex;
+
+	/*
+	 * Numero de veces que la persona pensara e intentara usar el pc
+	 */
+	private int nVeces = 0;
 
 	/**
 	 * Para crear números aleatorios (para las esperas)
@@ -58,13 +71,15 @@ public class Persona implements Runnable {
 	 * @param pc        el pc
 	 * 
 	 */
-	public Persona(int idPersona, int izquierda, int derecha, PC pc) {
+	public Persona(int idPersona, int izquierda, int derecha, PC pc, boolean turno, Object mutex) {
 		this.setTarjetaDerecha(null);
 		this.setTarjetaIzquierda(null);
 		this.setIdPersona(idPersona);
 		this.setIdTarjetaIzquierda(izquierda);
 		this.setIdTarjetaDerecha(derecha);
 		this.setPc(pc);
+		this.setTurno(turno);
+		this.setMutex(mutex);
 		t = new Thread(this);
 		t.start();
 	}
@@ -76,10 +91,13 @@ public class Persona implements Runnable {
 	public void run() {
 		Mesa.showMessage("Persona " + idPersona + ": sentandose");
 		try {
-			this.pensar();
-			this.cogerTarjetas();
-			this.entrarAlPC();
-			this.salirDelPC();
+			while (nVeces < 5) {
+				this.pensar();
+				this.cogerTarjetas();
+				this.entrarAlPC();
+				this.salirDelPC();
+				nVeces++;
+			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 			Thread.currentThread().interrupt();
@@ -91,8 +109,9 @@ public class Persona implements Runnable {
 	 * Metodo que sale del PC y suelta las tarjetas
 	 */
 	private void salirDelPC() {
-		this.pc.salirDelPC(idPersona);
+		this.pc.salirDelPC(this.idPersona);
 		this.soltarTarjetas();
+		Mesa.pasarTurno(this.idPersona);
 	}
 
 	/**
@@ -112,16 +131,16 @@ public class Persona implements Runnable {
 	 * @throws InterruptedException InterruptedException
 	 */
 	private void cogerTarjetas() throws InterruptedException {
-		Mesa.showMessage("Persona " + idPersona + ": cogiendo tarjetas");
-		while (tarjetaIzquierda == null || tarjetaDerecha == null) {
-			if (tarjetaIzquierda == null) {
-				tarjetaIzquierda = Mesa.cogerTarjeta(idTarjetaIzquierda, this);
+		synchronized (mutex) {
+			while (!turno) {
+				mutex.wait();
 			}
-			if (tarjetaDerecha == null) {
-				tarjetaDerecha = Mesa.cogerTarjeta(idTarjetaDerecha, this);
-			}
+			Mesa.showMessage("Persona " + idPersona + ": cogiendo tarjetas");
+			tarjetaIzquierda = Mesa.cogerTarjeta(idTarjetaIzquierda, this);
+			tarjetaDerecha = Mesa.cogerTarjeta(idTarjetaDerecha, this);
+			Mesa.showMessage("Persona " + idPersona + ": tarjetas cogidas");
 		}
-		Mesa.showMessage("Persona " + idPersona + ": tarjetas cogidas");
+
 	}
 
 	/**
@@ -130,18 +149,6 @@ public class Persona implements Runnable {
 	private void soltarTarjetas() {
 		this.soltarTarjetaIzquierda();
 		this.soltarTarjetaDerecha();
-	}
-
-	/**
-	 * Suelta la/s tarjeta/s que tenga en ese momento
-	 */
-	public void soltarTarjeta() {
-		if (this.tarjetaIzquierda != null) {
-			this.soltarTarjetaIzquierda();
-		}
-		if (this.tarjetaDerecha != null) {
-			this.soltarTarjetaDerecha();
-		}
 	}
 
 	/**
@@ -162,7 +169,7 @@ public class Persona implements Runnable {
 
 	/**
 	 * Metodo que muestra un mensaje por pantalla y duerme el hilo un tiempo
-	 * aleatorio entre 0 y 500 milisegundos
+	 * aleatorio entre 0 y 500 milisegundos (simula el pensamiento de la persona)
 	 *
 	 * @throws InterruptedException the interrupted exception
 	 */
@@ -278,4 +285,41 @@ public class Persona implements Runnable {
 	public void setPc(PC pc) {
 		this.pc = pc;
 	}
+
+	/*
+	 * Devuelve si es el turno de la persona o no
+	 *
+	 * @return true, si es el turno
+	 */
+	public boolean isTurno() {
+		return turno;
+	}
+
+	/*
+	 * Establece si es el turno de la persona o no
+	 * 
+	 * @param turno el valor que se le va a asignar al turno
+	 */
+	public void setTurno(boolean turno) {
+		this.turno = turno;
+	}
+
+	/*
+	 * Devuelve el objeto
+	 * 
+	 * @return mutex el objeto monitor
+	 */
+	public Object getMutex() {
+		return mutex;
+	}
+
+	/*
+	 * Establece el objeto
+	 * 
+	 * @param mutex el objeto monitor
+	 */
+	public void setMutex(Object mutex) {
+		this.mutex = mutex;
+	}
+
 }

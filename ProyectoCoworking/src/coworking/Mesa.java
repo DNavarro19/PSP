@@ -15,6 +15,11 @@ public class Mesa {
 	 */
 	static Persona[] personas = new Persona[5];
 
+	/*
+	 * El objeto monitor de los turnos a coger las tarjetas
+	 */
+	static Object turno = new Object();
+
 	/**
 	 * Metodo main que instancia el pc, las tarjetas y luego instancia las personas
 	 * y las ejecuta
@@ -29,9 +34,13 @@ public class Mesa {
 		}
 
 		for (int i = 0; i < personas.length - 1; i++) {
-			personas[i] = new Persona(i, i, i + 1, pc);
+			if (i == 0 || i == 2) {
+				personas[i] = new Persona(i, i, i + 1, pc, true, turno);
+			} else {
+				personas[i] = new Persona(i, i, i + 1, pc, false, turno);
+			}
 		}
-		personas[personas.length - 1] = new Persona(personas.length - 1, personas.length - 1, 0, pc);
+		personas[personas.length - 1] = new Persona(personas.length - 1, personas.length - 1, 0, pc, false, turno);
 	}
 
 	/**
@@ -58,10 +67,7 @@ public class Mesa {
 		Tarjeta tar = tarjetas[idTarjeta];
 		synchronized (tar) {
 			while (tar.isOcupada()) {
-				tar.wait(250);
-				if (tar.isOcupada()) {
-					p.soltarTarjeta();
-				}
+				tar.wait();
 			}
 			tar.setOcupada(true);
 			tar.setPersona(p);
@@ -84,6 +90,23 @@ public class Mesa {
 			tar.setPersona(null);
 			Mesa.showMessage("Persona " + idPersona + ": soltando tarjeta " + tar.getIdTarjeta());
 			tar.notifyAll();
+		}
+	}
+
+	/*
+	 * Metodo que pasa el turno de coger las tarjetas a la siguiente persona
+	 * 
+	 * @param idPersona la persona que pasa el turno
+	 */
+	public static void pasarTurno(int idPersona) {
+		synchronized (turno) {
+			personas[idPersona].setTurno(false);
+			if (idPersona == personas.length - 1) {
+				personas[0].setTurno(true);
+			} else {
+				personas[idPersona + 1].setTurno(true);
+			}
+			turno.notifyAll();
 		}
 	}
 }

@@ -96,6 +96,7 @@ public class Persona implements Runnable {
 				this.cogerTarjetas();
 				this.entrarAlPC();
 				this.salirDelPC();
+				Mesa.showMessage("Persona " + idPersona +"nVeces: " + nVeces);
 				nVeces++;
 			}
 		} catch (InterruptedException e) {

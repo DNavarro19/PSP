@@ -20,6 +20,7 @@ public class ServidorBuzon {
 			server.bind(addr);
 			while (true) {
 				Socket s = null;
+				String usuario = null;
 				try {
 					// socket object to receive incoming client requests
 					s = server.accept();
@@ -27,9 +28,11 @@ public class ServidorBuzon {
 					// obteniendo input y output streams
 					DataInputStream dis = new DataInputStream(s.getInputStream());
 					DataOutputStream dos = new DataOutputStream(s.getOutputStream());
+					dos.writeUTF("Cual es su nombre de usuario");
+					usuario = dis.readUTF();
 					System.out.println("Asignando nuevo hilo para el cliente");
 					// creando un nuevo objeto hilo
-					Thread t = new ClientHandler(s, dis, dos);
+					Thread t = new ClientHandler(s, dis, dos, usuario);
 					// invocando metodo start() del hilo
 					t.start();
 					System.out.println("Hilo creado");

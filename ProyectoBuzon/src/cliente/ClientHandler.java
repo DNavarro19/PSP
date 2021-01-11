@@ -9,12 +9,14 @@ public class ClientHandler extends Thread {
 	final DataInputStream dis;
 	final DataOutputStream dos;
 	final Socket s;
+	final String usuario;
 
 	// Constructor
-	public ClientHandler(Socket s, DataInputStream dis, DataOutputStream dos) {
+	public ClientHandler(Socket s, DataInputStream dis, DataOutputStream dos, String usu) {
 		this.s = s;
 		this.dis = dis;
 		this.dos = dos;
+		this.usuario = usu;
 	}
 
 	@Override
@@ -25,7 +27,8 @@ public class ClientHandler extends Thread {
 		// codigo que comprueba si tiene mensajes
 		while (true) {
 			try {
-				dos.writeUTF("Escriba algo");
+				dos.writeUTF("Hola " + this.usuario);
+				dos.writeUTF("¿Desea leer sus mensajes?");
 				received = dis.readUTF();
 				if (received.equals("Exit")) {
 					System.out.println("Cliente " + this.s + " desea salir...");

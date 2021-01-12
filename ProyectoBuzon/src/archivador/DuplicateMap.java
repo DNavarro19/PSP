@@ -2,11 +2,10 @@ package archivador;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class DuplicateMap<K, V> {
 
-	private Map<K, ArrayList<V>> m = new HashMap<>();
+	private HashMap<K, ArrayList<V>> m = new HashMap<>();
 
 	public void put(K k, V v) {
 		if (m.containsKey(k)) {

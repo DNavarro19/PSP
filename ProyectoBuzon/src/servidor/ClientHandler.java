@@ -28,7 +28,6 @@ public class ClientHandler extends Thread {
 		boolean exit = false;
 		String received;
 		String toReturn;
-		// codigo que comprueba si tiene mensajes
 		try {
 			dos.writeUTF("¿Cual es su nombre de usuario?");
 			this.usuario = this.dis.readUTF();
@@ -40,9 +39,14 @@ public class ClientHandler extends Thread {
 				switch (received) {
 				case "1":
 					ArrayList<String> msg = buzon.verMensajes(usuario);
-					for (int i = 0; i < msg.size(); i++) {
-						dos.writeUTF(msg.get(i));
-						dos.flush();
+					if (msg == null) {
+						toReturn = "No tiene mensajes";
+						dos.writeUTF(toReturn);
+					} else {
+						for (int i = 0; i < msg.size(); i++) {
+							dos.writeUTF(msg.get(i));
+							dos.flush();
+						}
 					}
 					break;
 				case "2":
@@ -52,6 +56,11 @@ public class ClientHandler extends Thread {
 					toReturn = "Cual es el mensaje que desea enviar";
 					dos.writeUTF(toReturn);
 					String mensaje = dis.readUTF();
+					if (destin.equals(usuario)) {
+						mensaje += " - By: Yo";
+					} else {
+						mensaje += " - By: " + usuario;
+					}
 					buzon.enviarMensaje(destin, mensaje);
 					break;
 				case "3":

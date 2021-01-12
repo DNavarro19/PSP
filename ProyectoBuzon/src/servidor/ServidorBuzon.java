@@ -23,7 +23,7 @@ public class ServidorBuzon {
 				Socket s = null;
 				String usuario = null;
 				try {
-					// socket object to receive incoming client requests
+					// objeto socket para recibir solicitudes de clientes entrantes
 					s = server.accept();
 					System.out.println("Un nuevo cliente está conectado: " + s);
 					// obteniendo input y output streams

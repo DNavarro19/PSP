@@ -14,10 +14,10 @@ public class SuperMarket {
 		for (int i = 0; i < 5; i++) {
 			clientes[i] = new Cliente10(i + 1);
 		}
-
+		
 		Thread.sleep(1000);
 		System.out.println(Resultado10.resultado);
-		
+
 		for (int i = 0; i < clientes.length; i++) {
 			clientes[i].t.join();
 		}

@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import archivador.Buzon;
 
 public class ClientHandler extends Thread {
-	final DataInputStream dis;
-	final DataOutputStream dos;
-	final Socket s;
+	private final DataInputStream dis;
+	private final DataOutputStream dos;
+	private final Socket s;
 	private String usuario;
 	private Buzon buzon;
 
@@ -31,7 +31,7 @@ public class ClientHandler extends Thread {
 		try {
 			dos.writeUTF("¿Cual es su nombre de usuario?");
 			this.usuario = this.dis.readUTF();
-			dos.writeUTF("Hola " + this.usuario);
+			dos.writeUTF("Hola " + this.usuario + "\n");
 			dos.flush();
 			while (!exit) {
 				mostrarMenu();
@@ -40,13 +40,14 @@ public class ClientHandler extends Thread {
 				case "1":
 					ArrayList<String> msg = buzon.verMensajes(usuario);
 					if (msg == null) {
-						toReturn = "No tiene mensajes";
+						toReturn = "No tiene mensajes\n";
 						dos.writeUTF(toReturn);
 					} else {
 						for (int i = 0; i < msg.size(); i++) {
 							dos.writeUTF(msg.get(i));
 							dos.flush();
 						}
+						buzon.borrarMensajes(usuario);
 					}
 					break;
 				case "2":
@@ -62,6 +63,8 @@ public class ClientHandler extends Thread {
 						mensaje += " - By: " + usuario;
 					}
 					buzon.enviarMensaje(destin, mensaje);
+					toReturn = "Mensaje enviado\n";
+					dos.writeUTF(toReturn);
 					break;
 				case "3":
 					System.out.println("Cliente " + this.s + " desea salir...");

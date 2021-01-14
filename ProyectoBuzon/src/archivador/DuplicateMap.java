@@ -21,6 +21,10 @@ public class DuplicateMap<K, V> {
 		return m.get(k);
 	}
 
+	public void remove(K k) {
+		m.remove(k);
+	}
+
 	public V get(K k, int index) {
 		return m.get(k).size() - 1 < index ? null : m.get(k).get(index);
 	}

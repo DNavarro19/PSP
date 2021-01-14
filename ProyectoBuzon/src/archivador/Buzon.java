@@ -18,6 +18,10 @@ public class Buzon {
 		return mensajes.get(usuario);
 	}
 
+	public synchronized void borrarMensajes(String usuario) {
+		mensajes.remove(usuario);
+	}
+	
 	public DuplicateMap<String, String> getMensajes() {
 		return mensajes;
 	}

@@ -7,9 +7,19 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Scanner;
 
+/**
+ * La clase Cliente que se comunica con el servidor
+ */
 public class ClienteBuzon {
 
-	public static void main(String[] args) throws InterruptedException {
+	/**
+	 * Metodo principal que establece la conexion con el servidor y se comunica con
+	 * el
+	 *
+	 * @param args the arguments
+	 * @throws InterruptedException the interrupted exception
+	 */
+	public static void main(String[] args) {
 		try {
 			Scanner scn = new Scanner(System.in);
 			InetAddress ip = InetAddress.getByName("localhost");
@@ -29,6 +39,7 @@ public class ClienteBuzon {
 				dos.flush();
 				if (mensaje.equals("3")) {
 					System.out.println("Closing this connection : " + clienteSocket);
+					scn.close();
 					clienteSocket.close();
 					System.out.println("Connection closed");
 					break;

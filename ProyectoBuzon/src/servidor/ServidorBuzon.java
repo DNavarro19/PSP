@@ -9,8 +9,19 @@ import java.net.Socket;
 
 import archivador.Buzon;
 
+/**
+ * La clase Servidor que acepta las conexiones de los clientes y se comunica con
+ * ellos a traves de un hilo que lanza por cada cliente
+ */
 public class ServidorBuzon {
 
+	/**
+	 * Metodo pirncipal que establece el servidor en un puerto y acepta conexiones
+	 * de los clientes que deseen conectarse, una vez la aceptan, lanzan un hilo al
+	 * que le pasan los streams y el socket de ese cliente para comunicarse con el
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		try {
 			Buzon buzon = new Buzon();
@@ -21,7 +32,6 @@ public class ServidorBuzon {
 			server.bind(addr);
 			while (true) {
 				Socket s = null;
-				String usuario = null;
 				try {
 					// objeto socket para recibir solicitudes de clientes entrantes
 					s = server.accept();

@@ -11,7 +11,7 @@ import com.pspro.xml.school.StudentDetailsResponse;
 @Endpoint
 public class StudentEndpoint 
 {
-    private static final String NAMESPACE_URI = "http://www.howtodoinjava.com/xml/school";
+    private static final String NAMESPACE_URI = "http://www.pspro.com/xml/school";
  
     private StudentRepository StudentRepository;
  

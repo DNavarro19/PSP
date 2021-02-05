@@ -1,0 +1,72 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://www.pspro.com/xml/concesionario"
+	targetNamespace="http://www.pspro.com/xml/concesionario"
+	elementFormDefault="qualified">
+
+	<xs:element name="ModeloDetailsRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+
+	<xs:element name="ModeloDetailsResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Modelo" type="tns:Modelo" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="ModelosRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="ModelosResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Modelos" maxOccurs="unbounded" type="tns:Modelo" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="MarcaDetailsRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="MarcaDetailsResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Marca" type="tns:Marca" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="Modelo">
+		<xs:sequence>
+			<xs:element name="nombre" type="xs:string" />
+			<xs:element name="caballos" type="xs:int" />
+			<xs:element name="combustible" type="xs:string" />
+			<xs:element name="marca" type="tns:Marca" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="Marca">
+		<xs:sequence>
+			<xs:element name="nombre" type="xs:string" />
+			<xs:element name="añoCreacion" type="xs:int" />
+		</xs:sequence>
+	</xs:complexType>
+	
+
+</xs:schema>

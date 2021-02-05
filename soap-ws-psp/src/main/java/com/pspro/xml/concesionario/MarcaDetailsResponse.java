@@ -2,11 +2,11 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.7 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2021.02.02 a las 02:02:14 PM CET 
+// Generado el: 2021.02.05 a las 09:30:29 PM CET 
 //
 
 
-package com.pspro.xml.school;
+package com.pspro.xml.concesionario;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="Marca" type="{http://www.pspro.com/xml/concesionario}Marca"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,36 +36,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "name"
+    "marca"
 })
-@XmlRootElement(name = "StudentDetailsRequest")
-public class StudentDetailsRequest {
+@XmlRootElement(name = "MarcaDetailsResponse")
+public class MarcaDetailsResponse {
 
-    @XmlElement(required = true)
-    protected String name;
+    @XmlElement(name = "Marca", required = true)
+    protected Marca marca;
 
     /**
-     * Obtiene el valor de la propiedad name.
+     * Obtiene el valor de la propiedad marca.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Marca }
      *     
      */
-    public String getName() {
-        return name;
+    public Marca getMarca() {
+        return marca;
     }
 
     /**
-     * Define el valor de la propiedad name.
+     * Define el valor de la propiedad marca.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Marca }
      *     
      */
-    public void setName(String value) {
-        this.name = value;
+    public void setMarca(Marca value) {
+        this.marca = value;
     }
 
 }

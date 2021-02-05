@@ -25,13 +25,13 @@ public class Config extends WsConfigurerAdapter
         return new ServletRegistrationBean(servlet, "/service/*");
     }
  
-    @Bean(name = "studentDetailsWsdl")
+    @Bean(name = "concesionarioDetailsWsdl")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema countriesSchema) 
     {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName("StudentDetailsPort");
-        wsdl11Definition.setLocationUri("/service/student-details");
-        wsdl11Definition.setTargetNamespace("http://www.pspro.com/xml/school");
+        wsdl11Definition.setPortTypeName("ConcesionarioDetailsPort");
+        wsdl11Definition.setLocationUri("/service/concesionario-details");
+        wsdl11Definition.setTargetNamespace("http://www.pspro.com/xml/concesionario");
         wsdl11Definition.setSchema(countriesSchema);
         return wsdl11Definition;
     }
@@ -39,6 +39,6 @@ public class Config extends WsConfigurerAdapter
     @Bean
     public XsdSchema countriesSchema() 
     {
-        return new SimpleXsdSchema(new ClassPathResource("school.xsd"));
+        return new SimpleXsdSchema(new ClassPathResource("concesionario.xsd"));
     }
 }

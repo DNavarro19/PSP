@@ -11,12 +11,24 @@ import org.springframework.util.Assert;
 import com.pspro.xml.concesionario.Marca;
 import com.pspro.xml.concesionario.Modelo;
  
+/**
+ * Clase ConcesionarioRepository, instancia todos los modelos y marcas.
+ */
 @Component
 public class ConcesionarioRepository {
+    
+    /** Hashmap que guarda los modelos. */
     private static final Map<String, Modelo> modelos = new HashMap<>();
+    
+    /** Hashmap que enlaza todos los modelos de una marca. */
     private static final Map<String, ArrayList<Modelo>> modelosMarca = new HashMap<>();
+    
+    /** Hashmap que guarda todas las marcas. */
     private static final Map<String, Marca> marcas = new HashMap<>();
  
+    /**
+     * Inicia los datos (modelos y marcas).
+     */
     @PostConstruct
     public void initData() {
     	
@@ -92,16 +104,34 @@ public class ConcesionarioRepository {
         
     }
  
+    /**
+     * Busca un modelo y devuelve todos sus datos
+     *
+     * @param name el nombre del modelo
+     * @return el modelo
+     */
     public Modelo findModelo(String name) {
         Assert.notNull(name, "El nombre del modelo no puede ser nulo");
         return modelos.get(name);
     }
     
+    /**
+     * Busca una marca y devuelve todos sus datos.
+     *
+     * @param name el nombre de la marca
+     * @return la marca
+     */
     public Marca findMarca(String name) {
     	Assert.notNull(name, "El nombre del marca no puede ser nulo");
         return marcas.get(name);
     }
     
+    /**
+     * Busca todos los modelos de una marca.
+     *
+     * @param name el nombre de la marca
+     * @return la lista de modelos
+     */
     public List<Modelo> findModelos(String name){
     	Assert.notNull(name, "El nombre del marca no puede ser nulo");
         return modelosMarca.get(name);

@@ -16,19 +16,35 @@ import com.pspro.xml.concesionario.ModeloDetailsResponse;
 import com.pspro.xml.concesionario.ModelosRequest;
 import com.pspro.xml.concesionario.ModelosResponse;
 
- 
+ /**
+ * Clase ConcesionarioEndpoint, crea el repositorio y los métodos con los que podremos pedir datos.
+ */
 @Endpoint
 public class ConcesionarioEndpoint 
 {
+    
+    /** La constante NAMESPACE_URI. */
     private static final String NAMESPACE_URI = "http://www.pspro.com/xml/concesionario";
  
+    /** El repositorio del Concesionario. */
     private ConcesionarioRepository ConcesionarioRepository;
  
+    /**
+     * Instancia el endpoint y da valor al repositorio.
+     *
+     * @param ConcesionarioRepository el repositorio del concesionario
+     */
     @Autowired
     public ConcesionarioEndpoint(ConcesionarioRepository ConcesionarioRepository) {
         this.ConcesionarioRepository = ConcesionarioRepository;
     }
  
+    /**
+     * Devuelve todos los datos de un modelo.
+     *
+     * @param request la request
+     * @return el modelo
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "ModeloDetailsRequest")
     @ResponsePayload
     public ModeloDetailsResponse getModelo(@RequestPayload ModeloDetailsRequest request) {
@@ -38,6 +54,12 @@ public class ConcesionarioEndpoint
         return response;
     }
     
+    /**
+     * Devuelve todos los modelos de una marca.
+     *
+     * @param request la request
+     * @return los modelos
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "ModelosRequest")
     @ResponsePayload
     public ModelosResponse getModelos(@RequestPayload ModelosRequest request) {
@@ -50,9 +72,15 @@ public class ConcesionarioEndpoint
         return response;
     }
     
+    /**
+     * Devuelve todos los datos de una marca.
+     *
+     * @param request la request
+     * @return la marca
+     */
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "MarcaDetailsRequest")
     @ResponsePayload
-    public MarcaDetailsResponse getMarcas(@RequestPayload MarcaDetailsRequest request) {
+    public MarcaDetailsResponse getMarca(@RequestPayload MarcaDetailsRequest request) {
         MarcaDetailsResponse response = new MarcaDetailsResponse();
         response.setMarca(ConcesionarioRepository.findMarca(request.getName()));
  

@@ -12,10 +12,20 @@ import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
  
+/**
+ * La clase Config.
+ */
 @EnableWs
 @Configuration
 public class Config extends WsConfigurerAdapter 
 {
+    
+    /**
+     * Message dispatcher servlet.
+     *
+     * @param applicationContext the application context
+     * @return the servlet registration bean
+     */
     @Bean
     public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext) 
     {
@@ -25,6 +35,12 @@ public class Config extends WsConfigurerAdapter
         return new ServletRegistrationBean(servlet, "/service/*");
     }
  
+    /**
+     * Default wsdl 11 definition.
+     *
+     * @param countriesSchema the countries schema
+     * @return the default wsdl 11 definition
+     */
     @Bean(name = "concesionarioDetailsWsdl")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema countriesSchema) 
     {
@@ -36,6 +52,11 @@ public class Config extends WsConfigurerAdapter
         return wsdl11Definition;
     }
  
+    /**
+     * Countries schema.
+     *
+     * @return the xsd schema
+     */
     @Bean
     public XsdSchema countriesSchema() 
     {

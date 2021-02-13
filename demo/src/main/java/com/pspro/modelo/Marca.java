@@ -6,7 +6,7 @@ public class Marca {
 
 	private String id;
 	private String nombre;
-	private int añoCreacion;
+	private int anioCreacion;
 	private List<Modelo> modelos;
 
 	public String getId() {
@@ -25,12 +25,12 @@ public class Marca {
 		this.nombre = nombre;
 	}
 
-	public int getAñoCreacion() {
-		return añoCreacion;
+	public int getAnioCreacion() {
+		return anioCreacion;
 	}
 
-	public void setAñoCreacion(int añoCreacion) {
-		this.añoCreacion = añoCreacion;
+	public void setAnioCreacion(int añoCreacion) {
+		this.anioCreacion = añoCreacion;
 	}
 
 	public List<Modelo> getModelos() {

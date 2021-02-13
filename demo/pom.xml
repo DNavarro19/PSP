@@ -8,19 +8,19 @@
 		<version>2.4.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.pspro</groupId>
-	<artifactId>rest-ws-psp</artifactId>
+	<groupId>com.psp</groupId>
+	<artifactId>rest-web-psp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>rest-ws-psp</name>
-	<description>Demo REST WebService project for Spring Boot</description>
+	<name>demo</name>
+	<description>Demo REST Web for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -17,7 +17,7 @@ import com.pspro.modelo.Repository;
 @RestController
 public class MarcaServiceController {
 
-	private Repository repo = new Repository();
+	Repository repo = new Repository();
 
 	@DeleteMapping(value = "/marca/{id}")
 	public ResponseEntity<Object> deleteMarca(@PathVariable("id") String id) {
@@ -49,36 +49,36 @@ public class MarcaServiceController {
 		return new ResponseEntity<>(repo.getMarca(id), HttpStatus.OK);
 	}
 
-	@DeleteMapping(value = "/marca/{idMarca}/modelo/{idModelo}")
-	public ResponseEntity<Object> deleteModelo(@PathVariable("idModelo") String idModelo,
-			@PathVariable("idMarca") String idMarca, @RequestBody Modelo modelo) {
-		repo.removeModelo(idMarca, modelo);
-		return new ResponseEntity<>("Product is deleted successsfully", HttpStatus.OK);
-	}
-
-	@PutMapping(value = "/marca/{idMarca}/modelo/{idModelo}")
-	public ResponseEntity<Object> updateModelo(@PathVariable("idModelo") String idModelo,
-			@PathVariable("idMarca") String idMarca, @RequestBody Modelo modelo) {
-		repo.removeModelo(idModelo, modelo);
-		modelo.setId(idModelo);
-		repo.putModelo(idMarca, modelo);
-		return new ResponseEntity<>("Product is updated successsfully", HttpStatus.OK);
-	}
-
-	@PostMapping(value = "/marca/{idMarca}/modelo")
-	public ResponseEntity<Object> createModelo(@PathVariable("idMarca") String idMarca, @RequestBody Modelo modelo) {
-		repo.putModelo(idMarca, modelo);
-		return new ResponseEntity<>("Product is created successfully", HttpStatus.CREATED);
-	}
-
-	@GetMapping(value = "/marca/{idMarca}/modelo")
-	public ResponseEntity<Object> getModelos(@PathVariable("idMarca") String idMarca) {
-		return new ResponseEntity<>(repo.getModelos(idMarca), HttpStatus.OK);
-	}
-
-	@GetMapping(value = "/marca/{idMarca}/modelo/{idModelo}")
-	public ResponseEntity<Object> getModelo(@PathVariable("idMarca") String idMarca,
-			@PathVariable("idModelo") String idModelo) {
-		return new ResponseEntity<>(repo.getModelo(idMarca, idModelo), HttpStatus.OK);
-	}
+//	@DeleteMapping(value = "/marca/{idMarca}/modelo/{idModelo}")
+//	public ResponseEntity<Object> deleteModelo(@PathVariable("idModelo") String idModelo,
+//			@PathVariable("idMarca") String idMarca, @RequestBody Modelo modelo) {
+//		repo.removeModelo(idMarca, modelo);
+//		return new ResponseEntity<>("Product is deleted successsfully", HttpStatus.OK);
+//	}
+//
+//	@PutMapping(value = "/marca/{idMarca}/modelo/{idModelo}")
+//	public ResponseEntity<Object> updateModelo(@PathVariable("idModelo") String idModelo,
+//			@PathVariable("idMarca") String idMarca, @RequestBody Modelo modelo) {
+//		repo.removeModelo(idModelo, modelo);
+//		modelo.setId(idModelo);
+//		repo.putModelo(idMarca, modelo);
+//		return new ResponseEntity<>("Product is updated successsfully", HttpStatus.OK);
+//	}
+//
+//	@PostMapping(value = "/marca/{idMarca}/modelo")
+//	public ResponseEntity<Object> createModelo(@PathVariable("idMarca") String idMarca, @RequestBody Modelo modelo) {
+//		repo.putModelo(idMarca, modelo);
+//		return new ResponseEntity<>("Product is created successfully", HttpStatus.CREATED);
+//	}
+//
+//	@GetMapping(value = "/marca/{idMarca}/modelo")
+//	public ResponseEntity<Object> getModelos(@PathVariable("idMarca") String idMarca) {
+//		return new ResponseEntity<>(repo.getModelos(idMarca), HttpStatus.OK);
+//	}
+//
+//	@GetMapping(value = "/marca/{idMarca}/modelo/{idModelo}")
+//	public ResponseEntity<Object> getModelo(@PathVariable("idMarca") String idMarca,
+//			@PathVariable("idModelo") String idModelo) {
+//		return new ResponseEntity<>(repo.getModelo(idMarca, idModelo), HttpStatus.OK);
+//	}
 }

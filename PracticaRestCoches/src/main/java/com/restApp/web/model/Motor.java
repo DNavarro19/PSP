@@ -1,4 +1,4 @@
-package com.pspro.modelo;
+package com.restApp.web.model;
 
 public class Motor {
 

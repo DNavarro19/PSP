@@ -1,4 +1,4 @@
-package com.pspro.modelo;
+package com.restApp.web.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -138,7 +138,7 @@ public class Repository {
 	}
 
 	public Modelo getModelo(String idMarca, String idModelo) {
-		return modeloRepo.get(idMarca).get(Integer.parseInt(idModelo));
+		return modeloRepo.get(idMarca).get(Integer.parseInt(idModelo)-1);
 	}
 
 	public void putModelo(String idMarca, Modelo modelo) {
@@ -154,7 +154,7 @@ public class Repository {
 	}
 
 	public Motor getMotor(String idModelo, String idMotor) {
-		return motorRepo.get(idModelo).get(Integer.parseInt(idMotor));
+		return motorRepo.get(idModelo).get(Integer.parseInt(idMotor)-1);
 	}
 
 	public void putMotor(String idModelo, Motor motor) {

@@ -8,10 +8,10 @@
 		<version>2.4.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.psp</groupId>
-	<artifactId>rest-web-psp</artifactId>
+	<groupId>com.restApp</groupId>
+	<artifactId>PracticaRestCoches</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
+	<name>PracticaRestCoches</name>
 	<description>Demo REST Web for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>

@@ -1,10 +1,10 @@
-package com.psp.web;
+package com.restApp.web;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoApplicationTests {
+class PracticaRestCochesApplicationTests {
 
 	@Test
 	void contextLoads() {
